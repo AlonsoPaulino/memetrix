@@ -9,6 +9,4 @@ public interface MemetrixNavigationListener {
     void onNavigationStart();
 
     void onNavigationFinish();
-
-    void navigateTo(Class destiny);
 }

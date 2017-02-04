@@ -1,6 +1,5 @@
 package com.lpaulino.memetrix.presentation.common;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,11 +19,6 @@ public abstract class MemetrixNavigationActivity extends MemetrixActivity implem
     @Override
     public void onNavigationStart() {
         mDrawerLayout.closeDrawer(GravityCompat.START, true);
-    }
-
-    @Override
-    public void navigateTo(Class destiny) {
-        startActivity(new Intent(this, destiny));
     }
 
     @Override

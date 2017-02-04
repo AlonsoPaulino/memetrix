@@ -1,4 +1,4 @@
-package com.lpaulino.memetrix.presentation.auth;
+package com.lpaulino.memetrix.presentation.signin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.lpaulino.memetrix.Constants;
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
 import com.lpaulino.memetrix.domain.User;
-import com.lpaulino.memetrix.presentation.about.AboutUsActivity;
 import com.lpaulino.memetrix.presentation.common.MemetrixFragment;
-import com.lpaulino.memetrix.presentation.memes.MemesActivity;
+import com.lpaulino.memetrix.presentation.signup.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,7 +52,7 @@ public class SignInFragment extends MemetrixFragment implements TextWatcher{
     public void onSignInButtonClicked(Button signInButton) {
         User user = new User(mEmailEditText.getText().toString(), mPasswordEditText.getText().toString());
         if (user.isAuthorized()) {
-            startActivity(new Intent(mContext, MemesActivity.class));
+            startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
             //TODO: Server Authentication
             PreferencesHelper.setUserLoggedIn(user.getUsername());
             getActivity().finish();
@@ -63,9 +63,7 @@ public class SignInFragment extends MemetrixFragment implements TextWatcher{
 
     @OnClick(R.id.sign_up_button)
     public void onSignUpButtonClicked(Button signUpButton) {
-        if (mFragmentListener != null) {
-            mFragmentListener.replaceFragment(SignUpFragment.newInstance(), true);
-        }
+        startActivity(new Intent(mContext, SignUpActivity.class));
     }
 
     @Override

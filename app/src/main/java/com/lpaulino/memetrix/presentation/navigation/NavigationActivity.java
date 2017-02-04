@@ -25,7 +25,7 @@ public abstract class NavigationActivity extends MemetrixNavigationActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getNavigationLayout());
-        setDefaultToolbar(true);
+        setDefaultToolbar(true, false);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

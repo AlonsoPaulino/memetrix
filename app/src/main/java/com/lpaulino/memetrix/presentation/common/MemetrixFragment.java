@@ -46,7 +46,7 @@ public abstract class MemetrixFragment extends Fragment implements MemetrixView 
     @Override
     public void dismissLoader() {
         if (mFragmentListener != null) {
-            mFragmentListener.showLoader();
+            mFragmentListener.dismissLoader();
         }
     }
 

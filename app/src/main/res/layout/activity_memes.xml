@@ -38,7 +38,7 @@
                 android:layout_marginBottom="16dp"
                 android:src="@android:drawable/ic_input_add"
                 android:tint="@android:color/white"
-                app:backgroundTint="@color/colorPrimaryDark"
+                app:backgroundTint="@color/colorAccent"
                 app:elevation="6dp"
                 app:fabSize="normal"/>
 

@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
 import com.lpaulino.memetrix.presentation.about.AboutUsActivity;
-import com.lpaulino.memetrix.presentation.auth.AuthenticationActivity;
+import com.lpaulino.memetrix.presentation.signin.SignInActivity;
 import com.lpaulino.memetrix.presentation.common.MemetrixNavigationFragment;
 import com.lpaulino.memetrix.presentation.groups.GroupsActivity;
 import com.lpaulino.memetrix.presentation.memes.MemesActivity;
@@ -53,9 +53,9 @@ public class NavigationFragment extends MemetrixNavigationFragment {
     }
 
     @OnClick({R.id.about_us_button, R.id.memes_button, R.id.my_grous_button, R.id.my_favorites_button, R.id.logout_button})
-    public void onNavigationItemClicked(Button aboutUsButton) {
+    public void onNavigationItemClicked(Button button) {
         Class destiny = null;
-        switch (aboutUsButton.getId()) {
+        switch (button.getId()) {
             case R.id.about_us_button: destiny = AboutUsActivity.class;
                 break;
             case R.id.memes_button: destiny = MemesActivity.class;
@@ -64,7 +64,7 @@ public class NavigationFragment extends MemetrixNavigationFragment {
                 break;
             case R.id.my_favorites_button: destiny = MemesActivity.class;
                 break;
-            case R.id.logout_button: destiny = AuthenticationActivity.class;
+            case R.id.logout_button: destiny = SignInActivity.class;
                 PreferencesHelper.setUserLoggedIn(null);
                 break;
         }
