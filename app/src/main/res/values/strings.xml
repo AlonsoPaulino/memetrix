@@ -8,6 +8,7 @@
     <string name="last_name">Last Name</string>
     <string name="username">Belatrix Email</string>
     <string name="password">Password</string>
+    <string name="repeat_password">Repita su contraseña</string>
     <string name="loading">Loading &#8230;</string>
     <string name="accept">Accept</string>
     <string name="sign_in">Sign In</string>
