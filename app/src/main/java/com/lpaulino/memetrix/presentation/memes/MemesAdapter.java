@@ -8,8 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lpaulino.memetrix.R;
-import com.lpaulino.memetrix.data.source.SourceFactory;
 import com.lpaulino.memetrix.domain.Meme;
+import com.lpaulino.memetrix.util.media.ImageFactory;
+import com.lpaulino.memetrix.util.media.loaders.GlideLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class MemesAdapter extends RecyclerView.Adapter<MemesAdapter.MemeViewHold
         holder.mMemeDescriptionTextView.setText(meme.getDescription());
         holder.mMemeGroupTextView.setText(meme.getGroup().getName());
         holder.mMemeTitleTextView.setText(meme.getTitle());
-        SourceFactory.createImageLoader().loadWebImage(meme.getImage(), holder.mMemeImageView);
+        ImageFactory.createImageLoader().loadWebImage(meme.getImage(), holder.mMemeImageView);
     }
 
     @Override

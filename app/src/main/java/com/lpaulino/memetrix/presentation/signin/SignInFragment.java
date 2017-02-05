@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.lpaulino.memetrix.Constants;
 import com.lpaulino.memetrix.R;
-import com.lpaulino.memetrix.data.source.local.PreferencesHelper;
+import com.lpaulino.memetrix.data.local.PreferencesHelper;
 import com.lpaulino.memetrix.domain.User;
 import com.lpaulino.memetrix.presentation.common.MemetrixFragment;
 import com.lpaulino.memetrix.presentation.signup.SignUpActivity;
@@ -50,11 +50,11 @@ public class SignInFragment extends MemetrixFragment implements TextWatcher{
 
     @OnClick(R.id.sign_in_button)
     public void onSignInButtonClicked(Button signInButton) {
-        User user = new User(mEmailEditText.getText().toString(), mPasswordEditText.getText().toString());
-        if (user.isAuthorized()) {
+        User user = new User(mEmailEditText.getText().toString());
+        if (user.isAuthorized(mPasswordEditText.getText().toString())) {
             startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
             //TODO: Server Authentication
-            PreferencesHelper.setUserLoggedIn(user.getUsername());
+            PreferencesHelper.setUserLoggedIn(user);
             mFragmentListener.dismissActivity();
         } else {
             showErrorMessage(new Exception(getString(R.string.message_error_invalid_credentials)));

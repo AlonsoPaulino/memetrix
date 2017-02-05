@@ -10,6 +10,7 @@
 
     <!-- DRAWER -->
     <dimen name="drawer_header_height">190dp</dimen>
+    <dimen name="drawer_header_image_size">80dp</dimen>
 
     <!--TEXT -->
     <dimen name="text_short_size">12sp</dimen>
