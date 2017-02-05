@@ -1,4 +1,4 @@
-package com.lpaulino.memetrix.data.local;
+package com.lpaulino.memetrix.data.source.local;
 
 import com.lpaulino.memetrix.util.PreferencesUtils;
 

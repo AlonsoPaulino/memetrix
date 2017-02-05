@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lpaulino.memetrix.Constants;
-import com.lpaulino.memetrix.data.local.PreferencesHelper;
+import com.lpaulino.memetrix.data.source.local.PreferencesHelper;
 import com.lpaulino.memetrix.presentation.signin.SignInActivity;
 import com.lpaulino.memetrix.util.StringUtils;
 

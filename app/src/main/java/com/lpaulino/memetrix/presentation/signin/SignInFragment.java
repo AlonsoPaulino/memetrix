@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.lpaulino.memetrix.Constants;
 import com.lpaulino.memetrix.R;
-import com.lpaulino.memetrix.data.local.PreferencesHelper;
+import com.lpaulino.memetrix.data.source.local.PreferencesHelper;
 import com.lpaulino.memetrix.domain.User;
 import com.lpaulino.memetrix.presentation.common.MemetrixFragment;
 import com.lpaulino.memetrix.presentation.signup.SignUpActivity;
