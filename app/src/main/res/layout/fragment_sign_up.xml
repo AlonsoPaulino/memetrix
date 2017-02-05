@@ -26,15 +26,31 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_medium_divider"
             android:hint="@string/last_name"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/view_high_divider"
+            android:layout_marginBottom="@dimen/view_medium_divider"
             android:hint="@string/username"
             android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_medium_divider"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/repeat_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_high_divider"
+            android:hint="@string/repeat_password"
+            android:inputType="textPassword" />
 
         <LinearLayout
             android:layout_width="match_parent"

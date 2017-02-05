@@ -10,7 +10,8 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.lpaulino.memetrix.Constants;
-import com.lpaulino.memetrix.data.source.SourceCallback;
+import com.lpaulino.memetrix.data.ErrorCallback;
+import com.lpaulino.memetrix.data.SuccessCallback;
 import com.lpaulino.memetrix.util.media.transformations.GlideCircleTransformation;
 
 import java.io.File;
@@ -37,9 +38,14 @@ public class GlideLoader implements ImageLoader {
     }
 
     @Override
-    public void loadWebImage(String url, ImageView imageView, int placeHolder, Transformation transformation, SourceCallback<Drawable> callback) {
+    public void loadWebImage(String url, ImageView imageView, int placeHolder, Transformation transformation, SuccessCallback<Drawable> successCallback) {
+        loadWebImage(url, imageView, placeHolder, transformation, successCallback, null);
+    }
+
+    @Override
+    public void loadWebImage(String url, ImageView imageView, int placeHolder, Transformation transformation, SuccessCallback<Drawable> successCallback, ErrorCallback errorCallback) {
         Context context = imageView.getContext();
-        loadImage(context, Glide.with(context).load(url), placeHolder, transformation, callback).into(imageView);
+        loadImage(context, Glide.with(context).load(url), placeHolder, transformation, successCallback, errorCallback).into(imageView);
     }
 
     @Override
@@ -58,9 +64,14 @@ public class GlideLoader implements ImageLoader {
     }
 
     @Override
-    public void loadLocalImage(String path, ImageView imageView, int placeHolder, Transformation transformation, SourceCallback<Drawable> callback) {
+    public void loadLocalImage(String path, ImageView imageView, int placeHolder, Transformation transformation, SuccessCallback<Drawable> successCallback) {
+        loadLocalImage(path, imageView, placeHolder, transformation, successCallback, null);
+    }
+
+    @Override
+    public void loadLocalImage(String path, ImageView imageView, int placeHolder, Transformation transformation, SuccessCallback<Drawable> successCallback, ErrorCallback errorCallback) {
         Context context = imageView.getContext();
-        loadImage(context, Glide.with(context).load(new File(path)), placeHolder, transformation, callback).into(imageView);
+        loadImage(context, Glide.with(context).load(new File(path)), placeHolder, transformation, successCallback, errorCallback).into(imageView);
     }
 
     private <T> DrawableTypeRequest<T> loadImage(
@@ -68,7 +79,8 @@ public class GlideLoader implements ImageLoader {
             DrawableTypeRequest<T> request,
             int placeholder,
             Transformation transformation,
-            final SourceCallback<Drawable> callback) {
+            final SuccessCallback<Drawable> successCallback,
+            final ErrorCallback errorCallback) {
         request.fitCenter();
         int imagePlaceHolder = (placeholder != Constants.NO_RESOURCE) ? placeholder : android.R.color.darker_gray;
         request.placeholder(imagePlaceHolder);
@@ -78,21 +90,23 @@ public class GlideLoader implements ImageLoader {
                     break;
             }
         }
-        if (callback != null) {
-            request.listener(new RequestListener<T, GlideDrawable>() {
-                @Override
-                public boolean onException(Exception e, T model, Target<GlideDrawable> target, boolean isFirstResource) {
-                    callback.onFailure(e);
-                    return false;
+        request.listener(new RequestListener<T, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, T model, Target<GlideDrawable> target, boolean isFirstResource) {
+                if (errorCallback != null) {
+                    errorCallback.onError(e);
                 }
+                return false;
+            }
 
-                @Override
-                public boolean onResourceReady(GlideDrawable resource, T model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    callback.onSuccess(resource);
-                    return false;
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, T model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                if (successCallback != null) {
+                    successCallback.onSuccess(resource);
                 }
-            });
-        }
+                return false;
+            }
+        });
         return request;
     }
 }
