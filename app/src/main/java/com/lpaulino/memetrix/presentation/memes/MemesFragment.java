@@ -39,9 +39,9 @@ public class MemesFragment extends MemetrixFragment implements MemesAdapter.Meme
         super.onViewCreated(view, savedInstanceState);
         mMemesAdapter = new MemesAdapter();
         mMemesAdapter.setMemesListener(this);
+        mMemesAdapter.setMemes(Meme.mocks());
         mMemesRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mMemesRecyclerView.setAdapter(mMemesAdapter);
-        mMemesAdapter.setMemes(Meme.mocks());
     }
 
     @Override

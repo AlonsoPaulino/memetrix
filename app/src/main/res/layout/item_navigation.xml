@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_navigation_holder"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    style="@style/Widget.AppCompat.Button.Borderless.Colored">
+
+    <ImageView
+        android:id="@+id/item_navigation_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/view_medium_divider" />
+
+    <TextView
+        android:id="@+id/item_navigation_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_medium_size"
+        android:textColor="@color/colorAccent"
+        android:textAllCaps="true"/>
+
+</LinearLayout>

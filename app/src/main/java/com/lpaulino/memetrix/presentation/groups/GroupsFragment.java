@@ -39,9 +39,9 @@ public class GroupsFragment extends MemetrixFragment implements GroupsAdapter.Gr
         super.onViewCreated(view, savedInstanceState);
         mGroupsAdapter = new GroupsAdapter();
         mGroupsAdapter.setGroupListener(this);
+        mGroupsAdapter.setGroups(Group.mocks());
         mMemesRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mMemesRecyclerView.setAdapter(mGroupsAdapter);
-        mGroupsAdapter.setGroups(Group.mocks());
     }
 
     @Override

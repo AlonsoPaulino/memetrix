@@ -83,22 +83,35 @@ public abstract class MemetrixActivity extends AppCompatActivity implements Meme
 
     @Override
     public void setDefaultToolbar(boolean homeEnabled) {
-        setCustomToolbar(mToolbar, homeEnabled);
+        setCustomToolbar(mToolbar, homeEnabled, true);
+    }
+
+    @Override
+    public void setDefaultToolbar(boolean homeEnabled, boolean backActionEnabled) {
+        setCustomToolbar(mToolbar, homeEnabled, backActionEnabled);
     }
 
     @Override
     public void setCustomToolbar(Toolbar toolbar) {
-        setCustomToolbar(toolbar, false);
+        setCustomToolbar(toolbar, true);
     }
 
     @Override
     public void setCustomToolbar(Toolbar toolbar, boolean homeButtonEnabled) {
+        setCustomToolbar(toolbar, homeButtonEnabled, true);
+    }
+
+    @Override
+    public void setCustomToolbar(Toolbar toolbar, boolean homeButtonEnabled, boolean backActionEnabled) {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(homeButtonEnabled);
             actionBar.setDisplayShowHomeEnabled(homeButtonEnabled);
+            if (homeButtonEnabled && backActionEnabled) {
+                toolbar.setNavigationOnClickListener(view -> onBackPressed());
+            }
         }
     }
 
@@ -134,5 +147,10 @@ public abstract class MemetrixActivity extends AppCompatActivity implements Meme
 
     protected Fragment findFragmentByTag(String tag) {
         return getSupportFragmentManager().findFragmentByTag(tag);
+    }
+
+    @Override
+    public void dismissActivity() {
+        finish();
     }
 }

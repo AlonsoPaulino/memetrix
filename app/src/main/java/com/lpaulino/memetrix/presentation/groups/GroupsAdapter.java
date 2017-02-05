@@ -72,11 +72,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         void onGroupSelected(int position);
     }
 
-    public void setGroupListener(GroupListener groupListener) {
-        mGroupListener = groupListener;
-        notifyDataSetChanged();
-    }
-
     public void setGroups(List<Group> grous) {
         if (mGroups == null) {
             mGroups = new ArrayList<>();
@@ -87,5 +82,9 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             mGroups.addAll(grous);
         }
         notifyDataSetChanged();
+    }
+
+    public void setGroupListener(GroupListener groupListener) {
+        mGroupListener = groupListener;
     }
 }

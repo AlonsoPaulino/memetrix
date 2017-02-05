@@ -2,4 +2,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- MARGINS -->
+    <dimen name="view_short_divider">5dp</dimen>
+    <dimen name="view_medium_divider">10dp</dimen>
+    <dimen name="view_high_divider">20dp</dimen>
+
+    <!-- DRAWER -->
+    <dimen name="drawer_header_height">190dp</dimen>
+
+    <!--TEXT -->
+    <dimen name="text_short_size">12sp</dimen>
+    <dimen name="text_short_medium_size">14sp</dimen>
+    <dimen name="text_medium_size">18sp</dimen>
+    <dimen name="text_medium_high_size">22sp</dimen>
+    <dimen name="text_high_size">28sp</dimen>
+
 </resources>
