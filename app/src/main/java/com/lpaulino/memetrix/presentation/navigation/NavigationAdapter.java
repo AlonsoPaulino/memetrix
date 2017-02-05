@@ -34,7 +34,7 @@ public class NavigationAdapter extends RecyclerView.Adapter<NavigationAdapter.Na
     @Override
     public void onBindViewHolder(NavigationViewHolder holder, int position) {
         NavigationItem navigationItem = mNavigationItems[position];
-        holder.itemView.setPressed(navigationItem != mNavigationItemSelected);
+        holder.itemView.setPressed(navigationItem == mNavigationItemSelected);
         if (navigationItem.getImageResource() != Constants.NO_RESOURCE) {
             holder.mItemNavigationImageView.setImageDrawable(
                     ContextCompat.getDrawable(holder.itemView.getContext(), navigationItem.getImageResource())
