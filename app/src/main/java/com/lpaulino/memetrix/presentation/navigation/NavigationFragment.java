@@ -73,12 +73,12 @@ public class NavigationFragment extends MemetrixNavigationFragment implements Na
         Class currentActivity = getActivity().getClass();
         Class destiny = navigationItem.getDestiny();
         if (!currentActivity.equals(destiny)) {
-            Intent intent = new Intent(mContext, navigationItem.getDestiny());
+            Intent intent = new Intent(mContext, destiny);
             startActivity(intent);
-            mFragmentListener.dismissActivity();
             if (navigationItem == NavigationItem.LOGOUT) {
                 PreferencesHelper.setUserLoggedIn(null);
             }
+            mFragmentListener.dismissActivity();
         }
     }
 }
