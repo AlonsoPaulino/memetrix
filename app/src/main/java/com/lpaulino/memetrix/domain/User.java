@@ -8,7 +8,7 @@ public class User {
 
     private static final String USER_DEFAULT = "meme@belatrixsf.com";
     private static final String PASSWORD_DEFAULT = "fis";
-    private static final String PROFILE_IMAGE_DEFAULT = "https://lh3.googleusercontent.com/-TdBRrnh5A1Q/WAAJS9Hhy4I/AAAAAAAAAAA/fcmiDugWs6A/s80-p-k-rw-no/photo.jpg";
+    private static final String PROFILE_IMAGE_DEFAULT = "http://hackatrix.belatrixsf.com/2016_arg/media/logo_belahacka_top.png";
 
     private String username;
     private String profileImage;
