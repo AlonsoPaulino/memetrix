@@ -1,6 +1,7 @@
 package com.lpaulino.memetrix.data.source.remote;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
@@ -31,7 +32,7 @@ public class GlideLoader implements ImageLoader{
     }
 
     @Override
-    public void loadWebImage(String url, ImageView imageView, int placeHolder, SourceCallback<String> callback) {
+    public void loadWebImage(String url, ImageView imageView, int placeHolder, SourceCallback<Drawable> callback) {
         Context context = imageView.getContext();
         loadImage(Glide.with(context).load(url), placeHolder, callback).into(imageView);
     }
@@ -42,7 +43,7 @@ public class GlideLoader implements ImageLoader{
     }
 
     @Override
-    public void loadLocalImage(String path, ImageView imageView, SourceCallback<String> callback) {
+    public void loadLocalImage(String path, ImageView imageView, SourceCallback<Drawable> callback) {
         Context context = imageView.getContext();
         loadImage(Glide.with(context).load(new File(path)), Constants.NO_RESOURCE, callback).into(imageView);
     }
@@ -50,7 +51,7 @@ public class GlideLoader implements ImageLoader{
     private <T> DrawableTypeRequest<T> loadImage(
             DrawableTypeRequest<T> request,
             int placeholder,
-            final SourceCallback<String> callback) {
+            final SourceCallback<Drawable> callback) {
         request.fitCenter();
         int imagePlaceHolder = (placeholder != Constants.NO_RESOURCE) ? placeholder : android.R.color.darker_gray;
         request.placeholder(imagePlaceHolder);
@@ -64,7 +65,7 @@ public class GlideLoader implements ImageLoader{
 
                 @Override
                 public boolean onResourceReady(GlideDrawable resource, T model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    callback.onSuccess("Success image loaded");
+                    callback.onSuccess(resource);
                     return false;
                 }
             });

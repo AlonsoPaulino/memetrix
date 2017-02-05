@@ -1,5 +1,6 @@
 package com.lpaulino.memetrix.data;
 
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.lpaulino.memetrix.data.source.SourceCallback;
@@ -14,9 +15,9 @@ public interface ImageLoader {
 
     void loadWebImage(String url, ImageView imageView, int placeHolder);
 
-    void loadWebImage(String url, ImageView imageView, int placeHolder, SourceCallback<String> callback);
+    void loadWebImage(String url, ImageView imageView, int placeHolder, SourceCallback<Drawable> callback);
 
     void loadLocalImage(String path, ImageView imageView);
 
-    void loadLocalImage(String path, ImageView imageView, SourceCallback<String> callback);
+    void loadLocalImage(String path, ImageView imageView, SourceCallback<Drawable> callback);
 }
