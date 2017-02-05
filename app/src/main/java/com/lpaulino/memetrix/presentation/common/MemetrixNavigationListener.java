@@ -6,7 +6,7 @@ package com.lpaulino.memetrix.presentation.common;
 
 public interface MemetrixNavigationListener {
 
-    void onNavigationStart();
+    void openDrawer();
 
-    void onNavigationFinish();
+    void closeDrawer();
 }

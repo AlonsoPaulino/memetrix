@@ -44,4 +44,6 @@
 
     </LinearLayout>
 
+    <include layout="@layout/item_navigation_header" />
+
 </android.support.v4.widget.NestedScrollView>

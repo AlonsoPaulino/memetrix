@@ -17,12 +17,12 @@ public abstract class MemetrixNavigationActivity extends MemetrixActivity implem
     @NonNull @BindView(R.id.drawer_layout) protected DrawerLayout mDrawerLayout;
 
     @Override
-    public void onNavigationStart() {
-        mDrawerLayout.closeDrawer(GravityCompat.START, true);
+    public void openDrawer() {
+        mDrawerLayout.openDrawer(GravityCompat.START, true);
     }
 
     @Override
-    public void onNavigationFinish() {
-        finish();
+    public void closeDrawer() {
+        mDrawerLayout.closeDrawer(GravityCompat.START, true);
     }
 }

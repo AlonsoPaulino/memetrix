@@ -39,4 +39,6 @@ public interface MemetrixFragmentListener {
     void showErrorMessage(Exception exception);
 
     void showSuccessMessage(String message);
+
+    void dismissActivity();
 }

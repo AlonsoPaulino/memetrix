@@ -55,7 +55,7 @@ public class SignInFragment extends MemetrixFragment implements TextWatcher{
             startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
             //TODO: Server Authentication
             PreferencesHelper.setUserLoggedIn(user.getUsername());
-            getActivity().finish();
+            mFragmentListener.dismissActivity();
         } else {
             showErrorMessage(new Exception(getString(R.string.message_error_invalid_credentials)));
         }

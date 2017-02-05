@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">memetrix</string>
+    <string name="app_name">Memetrix</string>
+
+    <string name="default_email">luis.paulino@belatrixsf.com</string>
 
     <!-- Common -->
-
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="username">Belatrix Email</string>

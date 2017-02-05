@@ -69,10 +69,10 @@ public class NavigationFragment extends MemetrixNavigationFragment {
                 break;
         }
         if (destiny != null) {
-            mNavigationListener.onNavigationStart();
+            mNavigationListener.closeDrawer();
             Intent intent = new Intent(mContext, destiny);
             startActivity(intent);
-            mNavigationListener.onNavigationFinish();
+            mFragmentListener.dismissActivity();
         }
     }
 }

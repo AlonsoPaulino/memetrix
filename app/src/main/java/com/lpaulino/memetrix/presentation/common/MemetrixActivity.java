@@ -148,4 +148,9 @@ public abstract class MemetrixActivity extends AppCompatActivity implements Meme
     protected Fragment findFragmentByTag(String tag) {
         return getSupportFragmentManager().findFragmentByTag(tag);
     }
+
+    @Override
+    public void dismissActivity() {
+        finish();
+    }
 }
