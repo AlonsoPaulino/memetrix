@@ -21,7 +21,7 @@ public enum NavigationItem {
 
     ABOUT_US(R.string.menu_about_us, Constants.NO_RESOURCE, AboutUsActivity.class),
 
-    LOGOUT(R.string.menu_about_us, Constants.NO_RESOURCE, SignInActivity.class);
+    LOGOUT(R.string.menu_logout, Constants.NO_RESOURCE, SignInActivity.class);
 
     private int mTitleResource;
     private int mImageResource;
