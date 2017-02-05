@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 /**
  * @author Luis Alonso Paulino Flores on 3/02/17.
