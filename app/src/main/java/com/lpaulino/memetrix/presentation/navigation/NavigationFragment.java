@@ -70,10 +70,15 @@ public class NavigationFragment extends MemetrixNavigationFragment implements Na
     @Override
     public void onNavigationItemSelected(NavigationItem navigationItem) {
         mNavigationListener.closeDrawer();
-        if (!navigationItem.getDestiny().equals(getActivity().getClass())) {
+        Class currentActivity = getActivity().getClass();
+        Class destiny = navigationItem.getDestiny();
+        if (!currentActivity.equals(destiny)) {
             Intent intent = new Intent(mContext, navigationItem.getDestiny());
             startActivity(intent);
             mFragmentListener.dismissActivity();
+            if (navigationItem == NavigationItem.LOGOUT) {
+                PreferencesHelper.setUserLoggedIn(null);
+            }
         }
     }
 }
