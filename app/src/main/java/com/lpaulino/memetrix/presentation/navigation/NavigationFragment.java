@@ -8,23 +8,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lpaulino.memetrix.Constants;
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
-import com.lpaulino.memetrix.presentation.about.AboutUsActivity;
-import com.lpaulino.memetrix.presentation.signin.SignInActivity;
+import com.lpaulino.memetrix.domain.User;
 import com.lpaulino.memetrix.presentation.common.MemetrixNavigationFragment;
-import com.lpaulino.memetrix.presentation.groups.GroupsActivity;
-import com.lpaulino.memetrix.presentation.memes.MemesActivity;
-
-import java.util.List;
+import com.lpaulino.memetrix.util.media.ImageFactory;
+import com.lpaulino.memetrix.util.media.loaders.ImageLoader;
 
 import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.OnClick;
 
 /**
  * @author Luis Alonso Paulino Flores on 3/02/17.
@@ -57,6 +52,7 @@ public class NavigationFragment extends MemetrixNavigationFragment implements Na
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         NavigationItem navigationItemSelected = NavigationItem.valueOf(getArguments().getString(ARG_NAVIGATION_ITEM));
         mNavigationAdapter = new NavigationAdapter();
         mNavigationAdapter.setNavigationItemListener(this);
@@ -65,6 +61,12 @@ public class NavigationFragment extends MemetrixNavigationFragment implements Na
         mNavigationRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mNavigationRecyclerView.setNestedScrollingEnabled(false);
         mNavigationRecyclerView.setAdapter(mNavigationAdapter);
+
+        User user = PreferencesHelper.getUserLoggedIn();
+        if (user != null) {
+            ImageFactory.createImageLoader().loadWebImage(user.getProfileImage(),
+                    mProfileImageView, Constants.NO_RESOURCE, ImageLoader.Transformation.CIRCLE);
+        }
     }
 
     @Override

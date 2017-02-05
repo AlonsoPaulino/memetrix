@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.domain.Group;
-import com.lpaulino.memetrix.util.ImageUtils;
+import com.lpaulino.memetrix.util.media.ImageFactory;
+import com.lpaulino.memetrix.util.media.loaders.GlideLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         Group group = mGroups.get(position);
         holder.mGroupNameTextView.setText(group.getName());
         holder.mGroupMemebersTextView.setText(String.valueOf(group.getMembers()));
-        ImageUtils.loadImage(holder.itemView.getContext(), group.getImage(), holder.mGroupImageView);
+        ImageFactory.createImageLoader().loadWebImage(group.getImage(), holder.mGroupImageView);
     }
 
     @Override
