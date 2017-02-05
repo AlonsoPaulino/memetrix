@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,23 +24,25 @@ import butterknife.OnClick;
  * @author Luis Alonso Paulino Flores on 3/02/17.
  */
 
-public class SignInFragment extends MemetrixFragment implements TextWatcher{
+public class SignInFragment extends MemetrixFragment implements SignInContract.View, TextWatcher{
 
     @BindView(R.id.email_edit_text) EditText mEmailEditText;
     @BindView(R.id.password_edit_text) EditText mPasswordEditText;
     @BindView(R.id.sign_in_button) Button mSignInButton;
+
+    private SignInContract.Presenter mPresenter;
 
     public static SignInFragment newInstance() {
         return new SignInFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public android.view.View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mEmailEditText.addTextChangedListener(this);
         mPasswordEditText.addTextChangedListener(this);
@@ -50,20 +51,34 @@ public class SignInFragment extends MemetrixFragment implements TextWatcher{
 
     @OnClick(R.id.sign_in_button)
     public void onSignInButtonClicked(Button signInButton) {
-        User user = new User(mEmailEditText.getText().toString());
-        if (user.isAuthorized(mPasswordEditText.getText().toString())) {
-            startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
-            //TODO: Server Authentication
-            PreferencesHelper.setUserLoggedIn(user);
-            mFragmentListener.dismissActivity();
-        } else {
-            showErrorMessage(new Exception(getString(R.string.message_error_invalid_credentials)));
-        }
+        String email = mEmailEditText.getText().toString().trim();
+        String password = mPasswordEditText.getText().toString();
+        mPresenter.authenticate(email, password);
     }
 
     @OnClick(R.id.sign_up_button)
     public void onSignUpButtonClicked(Button signUpButton) {
         startActivity(new Intent(mContext, SignUpActivity.class));
+    }
+
+    @Override
+    public void userIsAuthorized() {
+        startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
+        mFragmentListener.dismissActivity();
+    }
+
+    @Override
+    public void userIsUnauthorized(Exception exception) {
+        mEmailEditText.setText("");
+        mPasswordEditText.setText("");
+        mEmailEditText.clearFocus();
+        mPasswordEditText.clearFocus();
+        showErrorMessage(exception);
+    }
+
+    @Override
+    public void setPresenter(SignInContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @Override

@@ -130,7 +130,7 @@ public abstract class MemetrixActivity extends AppCompatActivity implements Meme
         if (message == null) {
             message = getString(R.string.message_error_default);
         }
-        Snackbar.make(mRootView, message, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mRootView, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -138,7 +138,7 @@ public abstract class MemetrixActivity extends AppCompatActivity implements Meme
         if (message == null) {
             message = getString(R.string.message_success_default);
         }
-        Snackbar.make(mRootView, message, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mRootView, message, Snackbar.LENGTH_LONG).show();
     }
 
     protected Fragment findFragmentById(int id) {
