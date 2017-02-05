@@ -88,6 +88,5 @@ public class MemesAdapter extends RecyclerView.Adapter<MemesAdapter.MemeViewHold
 
     public void setMemesListener(MemesListener memesListener) {
         mMemesListener = memesListener;
-        notifyDataSetChanged();
     }
 }

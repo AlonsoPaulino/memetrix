@@ -2,48 +2,20 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:paddingTop="50dp">
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/memes_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_memes"/>
+        <include layout="@layout/item_navigation_header" />
 
-        <Button
-            android:id="@+id/my_grous_button"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/navigation_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_my_groups"/>
-
-        <Button
-            android:id="@+id/my_favorites_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_favorites"/>
-
-        <Button
-            android:id="@+id/about_us_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_about_us"/>
-
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_logout"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
-    <include layout="@layout/item_navigation_header" />
 
 </android.support.v4.widget.NestedScrollView>

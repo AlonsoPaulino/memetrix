@@ -3,10 +3,14 @@ package com.lpaulino.memetrix.presentation.navigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
@@ -18,6 +22,7 @@ import com.lpaulino.memetrix.presentation.memes.MemesActivity;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.OnClick;
 
@@ -25,11 +30,16 @@ import butterknife.OnClick;
  * @author Luis Alonso Paulino Flores on 3/02/17.
  */
 
-public class NavigationFragment extends MemetrixNavigationFragment {
+public class NavigationFragment extends MemetrixNavigationFragment implements NavigationAdapter.NavigationItemListener {
 
     private static final String ARG_NAVIGATION_ITEM = "_NAVIGATION_ITEM_";
 
-    @BindViews({R.id.memes_button, R.id.my_grous_button, R.id.my_favorites_button, R.id.about_us_button, R.id.logout_button}) List<Button> mNavigationItems;
+    @BindView(R.id.profile_image_view) ImageView mProfileImageView;
+    @BindView(R.id.user_text_view) TextView mUserTextView;
+    @BindView(R.id.email_text_view) TextView mEmailTextView;
+    @BindView(R.id.navigation_recycler_view) RecyclerView mNavigationRecyclerView;
+
+    private NavigationAdapter mNavigationAdapter;
 
     public static NavigationFragment newInstance(NavigationItem item) {
         Bundle bundle = new Bundle();
@@ -47,30 +57,21 @@ public class NavigationFragment extends MemetrixNavigationFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavigationItem navigationItem = NavigationItem.valueOf(getArguments().getString(ARG_NAVIGATION_ITEM));
-        int selected = navigationItem.ordinal();
-        mNavigationItems.get(selected).setEnabled(false);
+        NavigationItem navigationItemSelected = NavigationItem.valueOf(getArguments().getString(ARG_NAVIGATION_ITEM));
+        mNavigationAdapter = new NavigationAdapter();
+        mNavigationAdapter.setNavigationItemListener(this);
+        mNavigationAdapter.setNavigationItems(NavigationItem.values());
+        mNavigationAdapter.setNavigationItemSelected(navigationItemSelected);
+        mNavigationRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mNavigationRecyclerView.setNestedScrollingEnabled(false);
+        mNavigationRecyclerView.setAdapter(mNavigationAdapter);
     }
 
-    @OnClick({R.id.about_us_button, R.id.memes_button, R.id.my_grous_button, R.id.my_favorites_button, R.id.logout_button})
-    public void onNavigationItemClicked(Button button) {
-        Class destiny = null;
-        switch (button.getId()) {
-            case R.id.about_us_button: destiny = AboutUsActivity.class;
-                break;
-            case R.id.memes_button: destiny = MemesActivity.class;
-                break;
-            case R.id.my_grous_button: destiny = GroupsActivity.class;
-                break;
-            case R.id.my_favorites_button: destiny = MemesActivity.class;
-                break;
-            case R.id.logout_button: destiny = SignInActivity.class;
-                PreferencesHelper.setUserLoggedIn(null);
-                break;
-        }
-        if (destiny != null) {
-            mNavigationListener.closeDrawer();
-            Intent intent = new Intent(mContext, destiny);
+    @Override
+    public void onNavigationItemSelected(NavigationItem navigationItem) {
+        mNavigationListener.closeDrawer();
+        if (!navigationItem.getDestiny().equals(getActivity().getClass())) {
+            Intent intent = new Intent(mContext, navigationItem.getDestiny());
             startActivity(intent);
             mFragmentListener.dismissActivity();
         }

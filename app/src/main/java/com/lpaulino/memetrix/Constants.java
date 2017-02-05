@@ -10,4 +10,5 @@ public class Constants {
 
     public static final Class MAIN_ACTIVITY = MemesActivity.class;
     public static final String TERMS_AND_CONDITIONS_URL = "http://campus.belatrixsf.com/default/termsandconditions";
+    public static final int NO_RESOURCE = -1;
 }
