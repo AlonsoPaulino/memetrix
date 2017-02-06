@@ -11,6 +11,17 @@ import com.lpaulino.memetrix.domain.User;
 
 public class UserRemoteSource implements UserDataSource{
 
+    private static UserRemoteSource INSTANCE = null;
+
+    private UserRemoteSource() {}
+
+    public static UserRemoteSource getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new UserRemoteSource();
+        }
+        return INSTANCE;
+    }
+
     @Override
     public void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
         FirebaseHelper.getFirebaseAuthInstance().signInWithEmailAndPassword(email, password)

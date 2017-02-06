@@ -34,11 +34,9 @@ android {
 
     productFlavors {
         production {
-            buildConfigField('String', 'SERVER_URL', '"http://api.demo"')
             buildConfigField('boolean', 'LOG_AVAILABLE', 'false')
         }
         development {
-            buildConfigField('String', 'SERVER_URL', '"http://api.demo"')
             buildConfigField('boolean', 'LOG_AVAILABLE', 'true')
         }
     }

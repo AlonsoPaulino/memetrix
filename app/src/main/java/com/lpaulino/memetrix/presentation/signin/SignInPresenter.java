@@ -1,7 +1,7 @@
 package com.lpaulino.memetrix.presentation.signin;
 
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
-import com.lpaulino.memetrix.managers.AuthManager;
+import com.lpaulino.memetrix.managers.UserManager;
 
 /**
  * @author Luis Alonso Paulino Flores on 05/02/17.
@@ -10,18 +10,18 @@ import com.lpaulino.memetrix.managers.AuthManager;
 public class SignInPresenter implements SignInContract.Presenter {
 
     private SignInContract.View mView;
-    private AuthManager mAuthManager;
+    private UserManager mUserManager;
 
-    public SignInPresenter(SignInContract.View view, AuthManager authManager) {
+    public SignInPresenter(SignInContract.View view, UserManager userManager) {
         mView = view;
-        mAuthManager = authManager;
+        mUserManager = userManager;
         mView.setPresenter(this);
     }
 
     @Override
     public void authenticate(String email, String password) {
         mView.showLoader();
-        mAuthManager.authenticate(email, password, data -> {
+        mUserManager.authenticate(email, password, data -> {
             PreferencesHelper.setUserLoggedIn(data);
             mView.dismissLoader();
             mView.userIsAuthorized();

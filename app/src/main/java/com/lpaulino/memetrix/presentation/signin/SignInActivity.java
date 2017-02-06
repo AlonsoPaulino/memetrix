@@ -3,9 +3,8 @@ package com.lpaulino.memetrix.presentation.signin;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.lpaulino.memetrix.Injection;
 import com.lpaulino.memetrix.R;
-import com.lpaulino.memetrix.data.remote.UserRemoteSource;
-import com.lpaulino.memetrix.managers.AuthManager;
 import com.lpaulino.memetrix.presentation.common.MemetrixActivity;
 
 /**
@@ -25,7 +24,7 @@ public class SignInActivity extends MemetrixActivity {
             signInFragment = SignInFragment.newInstance();
         }
 
-        new SignInPresenter(signInFragment, AuthManager.getInstance(new UserRemoteSource()));
+        new SignInPresenter(signInFragment, Injection.proviceAuthManager());
         replaceFragment(signInFragment);
     }
 }

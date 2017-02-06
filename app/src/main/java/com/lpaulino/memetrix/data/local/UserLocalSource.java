@@ -11,6 +11,17 @@ import com.lpaulino.memetrix.domain.User;
 
 public class UserLocalSource implements UserDataSource {
 
+    private static UserLocalSource INSTANCE = null;
+
+    private UserLocalSource() {}
+
+    public static UserLocalSource getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new UserLocalSource();
+        }
+        return INSTANCE;
+    }
+
     @Override
     public void authenticate(String email, String password, SuccessCallback<User> successCallback,
                              ErrorCallback errorCallback) {
