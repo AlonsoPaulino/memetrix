@@ -38,6 +38,8 @@ android {
         }
         development {
             buildConfigField('boolean', 'LOG_AVAILABLE', 'true')
+            buildConfigField('String', 'BACKENDLESS_API_KEY', getMemetrixApiKeys('backendless_api_key'))
+            buildConfigField('String', 'BACKENDLESS_APP_ID', getMemetrixApiKeys('backendless_app_id'))
         }
     }
 }

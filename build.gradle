@@ -44,3 +44,9 @@ ext {
     retrofitVersion = '2.1.0'
     reactiveXVersion = '2.0.1'
 }
+
+def getMemetrixApiKeys(String property) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream("../memetrix.properties"))
+    return "\"" + properties.getProperty(property) +"\""
+}
