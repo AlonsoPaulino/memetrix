@@ -10,7 +10,7 @@ import com.lpaulino.memetrix.managers.UserManager;
 
 public class Injection {
 
-    public static UserManager proviceAuthManager() {
+    public static UserManager provideUserManager() {
         return UserManager.getInstance(
                 UserLocalSource.getInstance(),
                 UserRemoteSource.getInstance()
