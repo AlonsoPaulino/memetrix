@@ -24,7 +24,7 @@ public class SignInActivity extends MemetrixActivity {
             signInFragment = SignInFragment.newInstance();
         }
 
-        new SignInPresenter(signInFragment, Injection.proviceAuthManager());
+        new SignInPresenter(signInFragment, Injection.provideUserManager());
         replaceFragment(signInFragment);
     }
 }
