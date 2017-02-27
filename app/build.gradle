@@ -38,7 +38,7 @@ android {
         }
         development {
             buildConfigField('boolean', 'LOG_AVAILABLE', 'true')
-            buildConfigField('String', 'SERVER_URL', '"https://api.backendless.com"')
+            buildConfigField('String', 'SERVER_URL', '"https://api.backendless.com/v1/"')
             buildConfigField('String', 'SERVER_API_VERSION_PATH', '"/v1"')
             buildConfigField('String', 'BACKENDLESS_API_KEY', getMemetrixApiKeys('backendless_api_key'))
             buildConfigField('String', 'BACKENDLESS_APP_ID', getMemetrixApiKeys('backendless_app_id'))
