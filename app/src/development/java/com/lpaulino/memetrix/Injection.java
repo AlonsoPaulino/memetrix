@@ -15,7 +15,7 @@ public class Injection {
     public static UserManager provideUserManager() {
         return UserManager.getInstance(
                 UserLocalSource.getInstance(),
-                UserRemoteSource.getInstance(RetrofitClient.getInstance().provideApi(UserService.class))
+                UserRemoteSource.getInstance(RetrofitClient.getInstance())
         );
     }
 }
