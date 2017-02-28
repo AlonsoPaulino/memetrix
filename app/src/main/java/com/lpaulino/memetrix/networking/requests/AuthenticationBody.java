@@ -1,11 +1,14 @@
 package com.lpaulino.memetrix.networking.requests;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author Luis Alonso Paulino Flores on 27/02/17.
  */
 
 public class AuthenticationBody {
 
+    @SerializedName("login")
     private String username;
     private String password;
 

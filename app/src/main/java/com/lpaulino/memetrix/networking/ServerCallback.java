@@ -1,7 +1,9 @@
 package com.lpaulino.memetrix.networking;
 
 import android.support.annotation.NonNull;
+import android.support.v4.app.SharedElementCallback;
 
+import com.google.gson.Gson;
 import com.lpaulino.memetrix.Memetrix;
 import com.lpaulino.memetrix.data.ErrorCallback;
 import com.lpaulino.memetrix.data.SuccessCallback;
@@ -30,20 +32,31 @@ public class ServerCallback<T> implements Callback<T> {
             Memetrix.log("ServerCallback successfull", response.body());
             mSuccessCallback.onSuccess(response.body());
         } else {
+            ServerError serverError = null;
             if (response.errorBody() != null) {
-                //TODO: handle error messages and code status
+                Gson gson = new Gson();
+                try {
+                    serverError = gson.fromJson(response.errorBody().string(), ServerError.class);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            mErrorCallback.onError(new Exception("Server error, something went wrong :("));
+            if (serverError == null) {
+                serverError = new ServerError(ServerError.UNKNOWN, "Something went wrong :(");
+            }
+            mErrorCallback.onError(serverError.createException(null));
         }
     }
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
         Memetrix.log("ServerCallbak onFailure", t.getMessage());
+        ServerError serverError;
         if (call.isCanceled()) {
-            mErrorCallback.onError(new Exception("Request cancelled by client", t));
+            serverError = new ServerError(ServerError.CANCELLED, "Request cancelled by client");
         } else {
-            mErrorCallback.onError(new Exception("Unknown error", t));
+            serverError = new ServerError(ServerError.UNKNOWN, "Something went wrong :(");
         }
+        mErrorCallback.onError(serverError.createException(t));
     }
 }
