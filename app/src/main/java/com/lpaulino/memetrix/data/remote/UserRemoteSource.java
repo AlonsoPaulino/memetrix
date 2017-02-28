@@ -16,25 +16,23 @@ import com.lpaulino.memetrix.networking.requests.AuthenticationBody;
 public class UserRemoteSource implements UserDataSource {
 
     private static UserRemoteSource INSTANCE = null;
-    private MemetrixClient mHttpClient;
+    private UserService mUserService;
 
-    private UserRemoteSource(MemetrixClient httpClient) {
-        mHttpClient = httpClient;
+    private UserRemoteSource(MemetrixClient memetrixClient) {
+        mUserService = memetrixClient.provideApi(UserService.class);
     }
 
-    public static UserRemoteSource getInstance(MemetrixClient httpClient) {
+    public static UserRemoteSource getInstance(MemetrixClient memetrixClient) {
         if (INSTANCE == null) {
-            INSTANCE = new UserRemoteSource(httpClient);
+            INSTANCE = new UserRemoteSource(memetrixClient);
         }
         return INSTANCE;
     }
 
     @Override
     public void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
-        UserService userService = mHttpClient.provideApi(UserService.class);
-        ServerRequest<User> request = new ServerRequest<>(userService.authenticate(
-                new AuthenticationBody(email, password)
-        ));
+        AuthenticationBody body = new AuthenticationBody(email, password);
+        ServerRequest<User> request = new ServerRequest<>(mUserService.authenticate(body));
         request.enqueue(successCallback, errorCallback);
     }
 }
