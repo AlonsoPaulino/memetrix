@@ -22,7 +22,7 @@ public class ServerRequest<T> implements MemetrixRequest<T> {
 
     @Override
     public void enqueue(@NonNull SuccessCallback<T> successCallback, @NonNull ErrorCallback errorCallback) {
-        mCall.enqueue(new ServerCallback<T>(successCallback, errorCallback));
+        mCall.enqueue(new ServerCallback<>(successCallback, errorCallback));
     }
 
     @Override

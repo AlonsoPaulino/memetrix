@@ -5,9 +5,9 @@ import com.lpaulino.memetrix.data.SuccessCallback;
 import com.lpaulino.memetrix.data.source.UserDataSource;
 import com.lpaulino.memetrix.domain.User;
 import com.lpaulino.memetrix.networking.ServerRequest;
-import com.lpaulino.memetrix.networking.ServiceFactory;
-import com.lpaulino.memetrix.networking.api.UserApi;
-import com.lpaulino.memetrix.networking.requests.AuthenticationParams;
+import com.lpaulino.memetrix.networking.api.UserService;
+import com.lpaulino.memetrix.networking.common.MemetrixClient;
+import com.lpaulino.memetrix.networking.requests.AuthenticationBody;
 
 /**
  * @author Luis Alonso Paulino Flores on 05/02/17.
@@ -16,20 +16,25 @@ import com.lpaulino.memetrix.networking.requests.AuthenticationParams;
 public class UserRemoteSource implements UserDataSource {
 
     private static UserRemoteSource INSTANCE = null;
+    private MemetrixClient mHttpClient;
 
-    private UserRemoteSource() {}
+    private UserRemoteSource(MemetrixClient httpClient) {
+        mHttpClient = httpClient;
+    }
 
-    public static UserRemoteSource getInstance() {
+    public static UserRemoteSource getInstance(MemetrixClient httpClient) {
         if (INSTANCE == null) {
-            INSTANCE = new UserRemoteSource();
+            INSTANCE = new UserRemoteSource(httpClient);
         }
         return INSTANCE;
     }
 
     @Override
     public void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
-        AuthenticationParams body = new AuthenticationParams(email, password);
-        ServerRequest<User> request = new ServerRequest<>(ServiceFactory.create(UserApi.class).authenticate(body));
+        UserService userService = mHttpClient.provideApi(UserService.class);
+        ServerRequest<User> request = new ServerRequest<>(userService.authenticate(
+                new AuthenticationBody(email, password)
+        ));
         request.enqueue(successCallback, errorCallback);
     }
 }
