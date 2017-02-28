@@ -44,6 +44,7 @@ ext {
     retrofitVersion = '2.1.0'
     loggingInterceptoVersion = '3.6.0'
     reactiveXVersion = '2.0.1'
+    leakcanaryVersion = '1.5'
 }
 
 def getMemetrixApiKeys(String property) {
