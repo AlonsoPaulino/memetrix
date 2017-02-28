@@ -25,7 +25,7 @@ public class Memetrix extends Application {
 
     public static void log(String tag, @Nullable  Object body) {
         String message = (body != null) ? body.toString() : "null";
-        if (BuildConfig.LOG_AVAILABLE) {
+        if (BuildConfig.DEBUG) {
             Log.d(tag, message);
         }
     }

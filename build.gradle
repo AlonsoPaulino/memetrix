@@ -42,6 +42,7 @@ ext {
     butterknifeVersion = '8.4.0'
     glideVersion = '3.7.0'
     retrofitVersion = '2.1.0'
+    loggingInterceptoVersion = '3.6.0'
     reactiveXVersion = '2.0.1'
 }
 
