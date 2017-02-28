@@ -30,16 +30,11 @@ public class RetrofitClient implements MemetrixClient {
         }
 
         builder.addInterceptor(chain -> {
-            String backendlessApplicationId = BuildConfig.BACKENDLESS_APP_ID;
-            String backendlessSecretKey = BuildConfig.BACKENDLESS_API_KEY;
-            String contentType = "application/json";
-            String applicationType = "REST";
-
             Request request = chain.request().newBuilder()
-                    .addHeader("application-id", backendlessApplicationId)
-                    .addHeader("secret-key", backendlessSecretKey)
-                    .addHeader("Content-Type", contentType)
-                    .addHeader("application-type", applicationType)
+                    .addHeader("application-id", BuildConfig.BACKENDLESS_APP_ID)
+                    .addHeader("secret-key", BuildConfig.BACKENDLESS_API_KEY)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("application-type", "REST")
                     .build();
 
             return chain.proceed(request);
