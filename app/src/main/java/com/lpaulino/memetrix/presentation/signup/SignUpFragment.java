@@ -56,7 +56,7 @@ public class SignUpFragment extends MemetrixFragment implements SignUpContract.V
     }
 
     @OnClick(R.id.accept_terms_and_conditions_button)
-    public void onAcceptTermsAndConditionsButtonClicked(View view) {
+    public void onAcceptTermsAndConditionsButtonClicked(Button termsButton) {
         startActivity(new Intent(mContext, TermsActivity.class));
     }
 
