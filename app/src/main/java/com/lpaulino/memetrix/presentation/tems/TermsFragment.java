@@ -1,4 +1,4 @@
-package com.lpaulino.memetrix.presentation.signup;
+package com.lpaulino.memetrix.presentation.tems;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +16,7 @@ import com.lpaulino.memetrix.presentation.common.MemetrixFragment;
 import butterknife.BindView;
 
 /**
- * @author Luis Alonso Paulino Flores on 04/02/17.
+ * @author Luis Alonso Paulino Flores on 7/03/17.
  */
 
 public class TermsFragment extends MemetrixFragment {

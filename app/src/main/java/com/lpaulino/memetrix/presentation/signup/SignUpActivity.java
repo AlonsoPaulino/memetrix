@@ -3,6 +3,7 @@ package com.lpaulino.memetrix.presentation.signup;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.lpaulino.memetrix.Injection;
 import com.lpaulino.memetrix.R;
 import com.lpaulino.memetrix.presentation.common.MemetrixActivity;
 
@@ -24,6 +25,7 @@ public class SignUpActivity extends MemetrixActivity {
             signUpFragment = SignUpFragment.newInstance();
         }
 
+        new SignUpPresenter(signUpFragment, Injection.provideUserManager());
         replaceFragment(signUpFragment);
     }
 }

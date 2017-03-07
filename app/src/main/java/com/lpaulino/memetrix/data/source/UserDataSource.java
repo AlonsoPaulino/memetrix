@@ -11,4 +11,6 @@ import com.lpaulino.memetrix.domain.User;
 public interface UserDataSource {
 
     void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback);
+
+    void register(String email, String firstName, String lastName, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback);
 }

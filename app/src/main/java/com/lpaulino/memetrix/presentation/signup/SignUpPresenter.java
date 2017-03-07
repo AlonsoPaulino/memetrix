@@ -1,33 +1,32 @@
-package com.lpaulino.memetrix.presentation.signin;
+package com.lpaulino.memetrix.presentation.signup;
 
 import com.lpaulino.memetrix.data.local.PreferencesHelper;
 import com.lpaulino.memetrix.managers.UserManager;
 
 /**
- * @author Luis Alonso Paulino Flores on 05/02/17.
+ * @author Luis Alonso Paulino Flores on 7/03/17.
  */
 
-public class SignInPresenter implements SignInContract.Presenter {
+public class SignUpPresenter implements SignUpContract.Presenter {
 
-    private SignInContract.View mView;
+    private SignUpContract.View mView;
     private UserManager mUserManager;
 
-    public SignInPresenter(SignInContract.View view, UserManager userManager) {
+    public SignUpPresenter(SignUpContract.View view, UserManager userManager) {
         mView = view;
         mUserManager = userManager;
         mView.setPresenter(this);
     }
 
     @Override
-    public void authenticate(String email, String password) {
+    public void register(String email, String firstName, String lastName, String password) {
         mView.showLoader();
-        mUserManager.authenticate(email, password, data -> {
+        mUserManager.register(email, firstName, lastName, password, data -> {
             PreferencesHelper.setUserLoggedIn(data);
             mView.dismissLoader();
             mView.navigateToMainScreen();
         }, exception -> {
             mView.dismissLoader();
-            mView.cleanFields();
             mView.showErrorMessage(exception);
         });
     }

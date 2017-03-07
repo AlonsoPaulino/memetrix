@@ -3,6 +3,7 @@ package com.lpaulino.memetrix.networking.api;
 import com.lpaulino.memetrix.domain.User;
 import com.lpaulino.memetrix.networking.ServerConstants;
 import com.lpaulino.memetrix.networking.requests.AuthenticationBody;
+import com.lpaulino.memetrix.networking.requests.RegistrationBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,4 +17,7 @@ public interface UserService {
 
     @POST(ServerConstants.LOGIN_PATH)
     Call<User> authenticate(@Body AuthenticationBody body);
+
+    @POST(ServerConstants.REGISTRATION_PATH)
+    Call<User> register(@Body RegistrationBody body);
 }

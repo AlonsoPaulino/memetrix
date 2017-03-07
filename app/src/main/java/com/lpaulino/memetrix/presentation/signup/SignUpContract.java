@@ -1,21 +1,20 @@
-package com.lpaulino.memetrix.presentation.signin;
+package com.lpaulino.memetrix.presentation.signup;
 
 import com.lpaulino.memetrix.presentation.common.MemetrixViewPresenter;
 
 /**
- * @author Luis Alonso Paulino Flores on 05/02/17.
+ * @author Luis Alonso Paulino Flores on 7/03/17.
  */
 
-public interface SignInContract {
+public interface SignUpContract {
 
     interface Presenter {
 
-        void authenticate(String email, String password);
+        void register(String email, String firstName, String lastName, String password);
     }
 
     interface View extends MemetrixViewPresenter<Presenter> {
 
         void navigateToMainScreen();
-        void cleanFields();
     }
 }

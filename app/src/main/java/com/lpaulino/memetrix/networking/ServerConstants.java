@@ -7,4 +7,5 @@ package com.lpaulino.memetrix.networking;
 public class ServerConstants {
 
     public static final String LOGIN_PATH = "users/login";
+    public static final String REGISTRATION_PATH = "users/register";
 }

@@ -8,6 +8,7 @@ import com.lpaulino.memetrix.networking.ServerRequest;
 import com.lpaulino.memetrix.networking.api.UserService;
 import com.lpaulino.memetrix.networking.common.MemetrixClient;
 import com.lpaulino.memetrix.networking.requests.AuthenticationBody;
+import com.lpaulino.memetrix.networking.requests.RegistrationBody;
 
 /**
  * @author Luis Alonso Paulino Flores on 05/02/17.
@@ -33,6 +34,13 @@ public class UserRemoteSource implements UserDataSource {
     public void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
         AuthenticationBody body = new AuthenticationBody(email, password);
         ServerRequest<User> request = new ServerRequest<>(mUserService.authenticate(body));
+        request.enqueue(successCallback, errorCallback);
+    }
+
+    @Override
+    public void register(String email, String firstName, String lastName, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
+        RegistrationBody body = new RegistrationBody(email, firstName, lastName, password);
+        ServerRequest<User> request = new ServerRequest<>(mUserService.register(body));
         request.enqueue(successCallback, errorCallback);
     }
 }

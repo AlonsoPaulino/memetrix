@@ -30,4 +30,8 @@ public class UserManager {
     public void authenticate(String email, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
         mUserRemoteDataSource.authenticate(email, password, successCallback, errorCallback);
     }
+
+    public void register(String email, String firstName, String lastName, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
+        mUserRemoteDataSource.register(email, firstName, lastName, password, data -> authenticate(email, password, successCallback, errorCallback), errorCallback);
+    }
 }

@@ -62,18 +62,17 @@ public class SignInFragment extends MemetrixFragment implements SignInContract.V
     }
 
     @Override
-    public void userIsAuthorized() {
+    public void navigateToMainScreen() {
         startActivity(new Intent(mContext, Constants.MAIN_ACTIVITY));
         mFragmentListener.dismissActivity();
     }
 
     @Override
-    public void userIsUnauthorized(Exception exception) {
+    public void cleanFields() {
         mEmailEditText.setText("");
         mPasswordEditText.setText("");
         mEmailEditText.clearFocus();
         mPasswordEditText.clearFocus();
-        showErrorMessage(exception);
     }
 
     @Override

@@ -27,4 +27,9 @@ public class UserLocalSource implements UserDataSource {
                              ErrorCallback errorCallback) {
 
     }
+
+    @Override
+    public void register(String email, String firstName, String lastName, String password, SuccessCallback<User> successCallback, ErrorCallback errorCallback) {
+
+    }
 }

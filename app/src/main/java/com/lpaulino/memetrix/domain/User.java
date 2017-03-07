@@ -14,24 +14,31 @@ public class User {
 
     @SerializedName("user-token")
     private String token;
-
-    private String username;
+    private String email;
+    @SerializedName("first_name")
+    private String firstName;
+    @SerializedName("last_name")
+    private String lastName;
+    @SerializedName("profile_image")
     private String profileImage;
 
-    public User(String username) {
-        this.username = username;
-        this.profileImage = PROFILE_IMAGE_DEFAULT;
+    public String getEmail() {
+        return email;
     }
 
-    public boolean isAuthorized(String password) {
-        return username != null && password != null && username.equals(USER_DEFAULT) && password.equals(PASSWORD_DEFAULT);
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     public String getProfileImage() {
-        return profileImage;
+        return PROFILE_IMAGE_DEFAULT;
     }
 }
