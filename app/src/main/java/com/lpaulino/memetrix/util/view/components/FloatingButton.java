@@ -11,6 +11,11 @@ import android.widget.ImageButton;
 
 public class FloatingButton extends ImageButton {
 
+    public static final int SIZE_NORMAL = 0;
+    public static final int SIZE_MINI = 1;
+
+    private int mSize;
+
     public FloatingButton(Context context) {
         super(context);
     }
@@ -29,8 +34,37 @@ public class FloatingButton extends ImageButton {
 
     }
 
+    private void setUpCircleSize() {
+
+    }
+
+    private void setUpDrawableSize() {
+
+    }
+
+    private void setUpBackground() {
+
+    }
+
     public void setIconDrawable(Drawable drawable) {
 
+    }
+
+    public void setSize(int size) {
+        if (size != SIZE_NORMAL && size != SIZE_MINI) {
+            throw new IllegalArgumentException("User SIZE_NORMAL or SIZE_MINI constants defined for FloatingButton");
+        }
+
+        if (mSize != size) {
+            mSize = size;
+            setUpCircleSize();
+            setUpDrawableSize();
+            setUpBackground();
+        }
+    }
+
+    public int getSize() {
+        return mSize;
     }
 
     public Drawable getIconDrawable() {
